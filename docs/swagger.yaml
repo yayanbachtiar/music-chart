@@ -1,0 +1,93 @@
+definitions:
+  model.User:
+    properties:
+      name:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      role:
+        type: string
+    type: object
+  model.UserInput:
+    properties:
+      name:
+        type: string
+      phone:
+        type: string
+      role:
+        example: admin
+        type: string
+    type: object
+  model.UserLogin:
+    properties:
+      password:
+        type: string
+      phone:
+        type: string
+    type: object
+info:
+  contact: {}
+  license: {}
+paths:
+  /claims:
+    get:
+      consumes:
+      - application/json
+      description: Login User
+      parameters:
+      - description: acceess token
+        in: query
+        name: access_token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+      summary: Show a account
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Login User
+      parameters:
+      - description: Account
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserLogin'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+      summary: Show a account
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Register User
+      parameters:
+      - description: Account
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+      summary: Show a account
+swagger: "2.0"
