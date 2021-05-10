@@ -1,6 +1,7 @@
 package users
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"github.com/yayanbachtiar/music-chart/src/bussiness/model"
@@ -9,7 +10,7 @@ import (
 )
 
 type user struct {
-
+	sql *sql.DB
 }
 
 func (u *user) SaveUser() []model.User {
@@ -21,8 +22,8 @@ type UserItf interface {
 	SaveUser()[]model.User
 }
 
-func InitUserDom() *user {
-	return &user{}
+func InitUserDom(sql *sql.DB) *user {
+	return &user{sql: sql}
 }
 
 func (u *user) GetUsers() []model.User {

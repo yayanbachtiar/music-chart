@@ -1,6 +1,8 @@
 package main
 
 import (
+	_ "github.com/go-sql-driver/mysql"
+
 	"database/sql"
 	"github.com/go-chi/chi"
 	"github.com/yayanbachtiar/music-chart/src/bussiness/domain"
@@ -23,16 +25,34 @@ type App struct {
 
 func (a *App) Initialize() {
 	route:= chi.NewRouter()
-	dom := domain.InitDomain()
+	dbURI := "sql6411390:Bz426v1YUC@tcp(sql6.freemysqlhosting.net:3306)/sql6411390"
+	db, err := sql.Open("mysql", dbURI)
+	if err != nil {
+		log.Fatal(err)
+	}
+	a.DB = db
+	for i := 0; i < 5; i++ {
+		time.Sleep(time.Duration(i) * time.Second)
+
+		if err = a.DB.Ping(); err == nil {
+			break
+		}
+		log.Println(err)
+	}
+	if err != nil {
+		log.Fatal(err)
+	}
+	a.DB.SetMaxOpenConns(10)
+	dom := domain.InitDomain(a.DB)
 	service := service2.Init(dom)
 	//a.InitRoutes()
 	a.Router = rest.InitRoutes(route, service)
 }
 
-//// @title APIs with chi swagger and jwt
-//// @version 1.0
-//// @description APIs with chi swagger and jwt
-//// @BasePath /
+// @title APIs with chi swagger and jwt
+// @version 1.0
+// @description APIs with chi swagger and jwt
+// @BasePath /
 //
 //func (a *App) InitRoutes() {
 //	a.Router.Use(middleware.Logger)

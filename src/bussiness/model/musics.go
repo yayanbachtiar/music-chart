@@ -5,5 +5,8 @@ type Song struct {
 	Duration string `json:"duration"`
 	Artist string `json:"artist"`
 	Year string `json:"year"`
+}
 
+type FavoritesSongs struct {
+	
 }

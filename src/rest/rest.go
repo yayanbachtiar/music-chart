@@ -1,7 +1,6 @@
 package rest
 
 import (
-	_ "github.com/yayanbachtiar/music-chart/docs"
 	"context"
 	"errors"
 	"fmt"
@@ -10,6 +9,8 @@ import (
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/render"
 	httpSwagger "github.com/swaggo/http-swagger"
+	_ "github.com/swaggo/files" // swagger embed files
+_ "github.com/yayanbachtiar/music-chart/docs"
 	"github.com/yayanbachtiar/music-chart/src/bussiness/model"
 	"github.com/yayanbachtiar/music-chart/src/bussiness/service"
 	"net/http"

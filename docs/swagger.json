@@ -1,9 +1,13 @@
 {
     "swagger": "2.0",
     "info": {
+        "description": "APIs with chi swagger and jwt",
+        "title": "APIs with chi swagger and jwt",
         "contact": {},
-        "license": {}
+        "license": {},
+        "version": "1.0"
     },
+    "basePath": "/",
     "paths": {
         "/claims": {
             "get": {

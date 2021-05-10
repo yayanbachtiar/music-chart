@@ -1,3 +1,4 @@
+basePath: /
 definitions:
   model.User:
     properties:
@@ -29,7 +30,10 @@ definitions:
     type: object
 info:
   contact: {}
+  description: APIs with chi swagger and jwt
   license: {}
+  title: APIs with chi swagger and jwt
+  version: "1.0"
 paths:
   /claims:
     get:
